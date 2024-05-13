@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:5173/")
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
-    private UserService userService;
-
-    @GetMapping
-    public ResponseEntity<UserResponseDTO> getCurrentUser(){
-        UserResponseDTO userResponseDTO = userService.getCurrentUser();
-        return ResponseEntity.ok(userResponseDTO);
-    }
+//    @Autowired
+//    private UserService userService;
+//
+//    @GetMapping
+//    public ResponseEntity<UserResponseDTO> getCurrentUser(){
+//        UserResponseDTO userResponseDTO = userService.getCurrentUser();
+//        return ResponseEntity.ok(userResponseDTO);
+//    }
 }

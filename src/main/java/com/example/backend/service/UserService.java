@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface UserService {
-    UserResponseDTO getCurrentUser();
+//    UserResponseDTO getCurrentUser();
 }

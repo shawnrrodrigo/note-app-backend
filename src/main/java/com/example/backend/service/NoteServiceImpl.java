@@ -14,8 +14,8 @@ import com.example.backend.response.NoteResponseDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,38 +37,38 @@ public class NoteServiceImpl implements NoteService {
     private UserRepository userRepository;
     @Override
     public List<NoteResponseDTO> getAllUnarchivedNotes() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String username = authentication.getName();
 
-        User currentUser = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User not found", HttpStatus.NOT_FOUND.value()));
+//        User currentUser = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User not found", HttpStatus.NOT_FOUND.value()));
 
-        List<Note> noteList  = noteRepository.findNoteByUserAndArchivedIsFalse(currentUser);
+        List<Note> noteList  = noteRepository.findNoteByArchivedIsFalse();
         return getNoteResponseDTOS(noteList);
     }
 
     @Override
     public List<NoteResponseDTO> getAllArchivedNotes() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String username = authentication.getName();
 
-        User currentUser = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User not found", HttpStatus.NOT_FOUND.value()));
+//        User currentUser = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User not found", HttpStatus.NOT_FOUND.value()));
 
-        List<Note> noteList = noteRepository.findNoteByUserAndArchivedIsTrue(currentUser);
+        List<Note> noteList = noteRepository.findNoteByArchivedIsTrue();
         return getNoteResponseDTOS(noteList);
 
     }
 
     @Override
     public NoteResponseDTO createNote(NoteRequestDTO noteRequestDTO) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String username = authentication.getName();
 
-        User user = userRepository.findByUsername(username).orElseThrow();
+//        User user = userRepository.findByUsername(username).orElseThrow();
         Note note = new Note();
         note.setTitle(noteRequestDTO.getTitle());
         note.setContent(noteRequestDTO.getContent());
         note.setArchived(false);
-        note.setUser(user);
+//        note.setUser(user);
 
         NoteCategory noteCategory = new NoteCategory();
         Optional<Category> existingCategory = categoryRepository.findByName(noteRequestDTO.getCategory());
